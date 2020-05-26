@@ -1,0 +1,27 @@
+<div class="example-container mat-elevation-z8">
+  <h2>Estadisticas De Casos de COVID-19</h2>
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/cases']"><mat-icon>list</mat-icon></a>
+  </div>
+  <div class="button-row">
+    <mat-button-toggle-group name="status" aria-label="Status" [(ngModel)]="label" (ngModelChange)="changeStatus()">
+      <mat-button-toggle value="Positive">Positivo</mat-button-toggle>
+      <mat-button-toggle value="Dead">Finado</mat-button-toggle>
+      <mat-button-toggle value="Recovered">Recuperado</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div style="display: block;">
+    <canvas baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType">
+    </canvas>
+  </div>
+</div>
